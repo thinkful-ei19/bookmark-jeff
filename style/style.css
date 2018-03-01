@@ -2,18 +2,34 @@
   box-sizing: border-box;
   margin: 0;
 }
+header{
+  padding-bottom: 20px;
+}
 #banner{
   text-align: center;
-  border-bottom: 5px black solid;
+ 
   
 }
 #rate{ 
   padding-top: 20px;
  text-align: center;
+ float:right;
 }
 #bookmarks{
+  padding-top: 20px;
   text-align: center;
 }
 li{
+  list-style: none;
   
+}
+.title{
+  padding-bottom: 10px;
+}
+
+.box-1{
+padding-top: 20px;
+  max-width: 500px;
+  border:2px blue solid;
+
 }

@@ -8,8 +8,25 @@
   <title>BookMark</title>
 </head>
 <body>
-  <header role="banner">
-    <h1 id="banner">Bookmark</h1>
+  <header id="banner" role="banner">
+    <h1>Bookmark</h1>
+    <div class="boxmethod">
+   <label for="showbox">Bookmark</label>
+    <input type="checkbox" name="showbox" value="checkman">
+
+    <form id="book-method">
+        
+        <label for="book-entry">Bookmark Title</label>
+        <input type="text" name="book-entry" class="book-entry" placeholder="Title">
+        <br/>
+        <label for="book-entry">Bookmark Website</label>
+        <input type="text" name="book-entry" class="book-entry" placeholder="Website To BookMark">
+        <br/>
+        <label for="book-entry">BookMark Description</label>
+        <input type="text" name="book-entry" class="book-entry" placeholder="Description">
+        <button type="submit">Add item</button>
+    </form>
+  </div>
   </header>
   <main role="main">
     <div id="rate">
@@ -17,16 +34,31 @@
           <option value="all">All</option>
           <option value="minRate">Minimum Rating</option>
           <option value="maxRate">Maximum Rating</option>
-          
+        
         </select>
-        <button type="button">Create Bookmark</button>
         </div>
         <ul id="bookmarks">
-          <li class="bk"><h2><a>Google</a></h2></li>
+          <div class="box-1">
+          <li class="bk">
+            <h2 class="title">
+              <a target="_blank" href"www.google.com ">Google</a>
+            </h2>
+            <p>
+              Hello World
+            </p>
+          <button>Edit</button>
+          <button >Delete</button>
+          <button>Expand</button>
+        </li>
+        </div>
+        
         </ul>
 
   </main>
-  <script src="app.js"></script>
-  <script src="store.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/store.js"></script>
 </body>
 </html>
+

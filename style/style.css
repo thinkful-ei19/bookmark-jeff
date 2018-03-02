@@ -1,10 +1,10 @@
 *{
   box-sizing: border-box;
-  margin: 0;
-  overflow: hidden;
+
 }
 header{
   padding-bottom: 20px;
+  border-bottom: rgb(36, 36, 131) 5px solid;
 }
 #banner{
   text-align: center;
@@ -29,12 +29,14 @@ li{
 }
 
 .box-1{
-padding-top: 20px;
- margin-left: 23em;
+  margin:auto;
+  padding-top: 10px;
+  margin-bottom:20px;
   max-width: 500px;
-  border:2px blue solid;
+  border:2px brown solid;
 
 }
 .hidden{
   display: none!important;
 }
+a

@@ -5,7 +5,7 @@ const bookmarkList = (function () {
     return `
   <div data-bookmark-id="${item.id}" class="box-1 ">
   <li  class="bk">
-    <h2 class="title">
+    <h2 class="title"> Visit
       <a target="_blank" href="${item.url} ">${item.title}</a>
     </h2>
     <select id="rating-drop-down">
@@ -15,11 +15,11 @@ const bookmarkList = (function () {
         <option value="rating3">Rating 4</option>
         <option value="rating3">Rating 5</option>
     </select>
-    <p class="hidden">
-      ${item.description}
+    <p class="hidden desc-but">
+      ${item.desc}
     </p>
-  <button data-bookmark-id="${item.id}" class="delButton">Delete</button>
-  <button data-bookmark-id="${item.id}">Expand</button>
+  <button data-bookmark-id="${item.id}" class="delButton js-bookmark-toggle">Delete</button>
+  <button data-bookmark-id="${item.id}" class="expand">Expand</button>
 </li>
 </div>
         `;
@@ -36,7 +36,7 @@ const bookmarkList = (function () {
 
 
   function renderBookmark() {
-   console.log(STORE.bookmarks)
+    console.log(STORE.bookmarks)
     // render the shopping list in the DOM
     console.log('`renderShoppingList` ran');
     const bookListItemsString = generateBookmarkItemsString(STORE.bookmarks);
@@ -44,43 +44,45 @@ const bookmarkList = (function () {
     $('#bookmarks').html(bookListItemsString);
   }
 
-  function getBookmarks(){
-    api.getBookMarks(function(response){
+  function getBookmarks() {
+    api.getBookMarks(function (response) {
       STORE.bookmarks = response;
       renderBookmark();
 
     })
   }
-  function getFilterB(ratingFilter){
-    api.getBookMarks(function(response){
-      STORE.bookmarks = response.filter(function(item){
-        return  item.rating <= ratingFilter
+
+  function getFilterB(ratingFilter) {
+    api.getBookMarks(function (response) {
+      STORE.bookmarks = response.filter(function (item) {
+        return item.rating <= ratingFilter
       })
       renderBookmark();
 
     })
   }
 
-  function addItemToShoppingList(itemName,url,description,rating) {
-    console.log(`Adding "${itemName}" to shopping list`);
+  function addItemToBookmark(itemName, url, desc, rating) {
+    console.log(`Adding "${itemName}" to bookmark`);
     const newBookmark = {
       id: cuid(),
       title: itemName,
       url: url,
-      description: description,
-      rating:rating
+      desc: desc,
+      rating: rating
     }
     STORE.bookmarks.push(newBookmark);
     saveBookMark(newBookmark)
   }
- function saveBookMark(bookmark){
-   api.createBookmark(bookmark,function(response){
-     console.log(response)
-   })
 
-    
+  function saveBookMark(bookmark) {
+    api.createBookmark(bookmark, function (response) {
+      console.log(response)
+    })
 
- }
+
+
+  }
 
   function handleNewBookmark() {
     $('#book-method').submit(function (event) {
@@ -88,39 +90,50 @@ const bookmarkList = (function () {
       console.log('`handleNewBookmark ` ran');
       const newItemName = $('.book-entry').val();
       $('.book-entry').val('');
-      const newItemName2 = $('.book-entry-2').val();
-      $('.book-entry-2').val('');
-      const newItemName3 = $('.book-entry-3').val();
-      $('.book-entry-3').val('');
+      const newItemName2 = $('.book-link').val();
+      $('.book-link').val('');
+      const newItemName3 = $('.book-desc').val();
+      $('.book-desc').val('');
       const newItemName4 = $('#rating-drop-down').val();
       $('#rating-drop-down').val('1')
-      addItemToShoppingList(newItemName,newItemName2,newItemName3,newItemName4);
+      addItemToBookmark(newItemName, newItemName2, newItemName3, newItemName4);
       renderBookmark();
     });
   }
-  function handleDeleteBookmark(){
-    $('#bookmarks').on('click','.delButton',function(event){
-      const delBookmark = $(event.currentTarget).attr('data-bookmark-id')
-      $( `div[data-bookmark-id="${delBookmark}"]`).remove()
+
+  function handleDeleteBookmark() {
+    $('#bookmarks').on('click', '.delButton', function (event) {
+      const delBookmark = $(event.currentTarget).attr('data-bookmark-id');
+      $(`div[data-bookmark-id="${delBookmark}"]`).remove()
       getRidBookmark(delBookmark);
       getBookmarks()
     })
   }
-  function getRidBookmark(id){
-    api.deleteMark(id,function(response){
-    console.log(response);
-  
+
+  function getRidBookmark(id) {
+    api.deleteMark(id, function (response) {
+      console.log(response);
+
     });
   }
 
-  function handleShoppingList() {
+  function handleDetails() {
+    $('#bookmarks').on('click','.expand', function (event) {
+      const handleDetail1 = $(event.currentTarget)
+      $(handleDetail1).siblings('p').toggleClass('hidden')
+      console.log(handleDetail1)
+    })
+  }
+
+  function handleBookmark() {
     getBookmarks();
     handleNewBookmark();
     handleDeleteBookmark();
+    handleDetails();
   };
 
   // when the page loads, call `handleShoppingList`
-  $(handleShoppingList);
+  $(handleBookmark);
   return {
     getBookmarks,
     renderBookmark

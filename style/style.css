@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 *{
   box-sizing: border-box;
-
+  margin: 0;
+  font-family: 'Abril Fatface', cursive;
 }
 header{
   padding-bottom: 20px;
   border-bottom: rgb(36, 36, 131) 5px solid;
+  background: burlywood;
+}
+body{
+  background:#046564;
 }
 #banner{
   text-align: center;
@@ -33,10 +39,17 @@ li{
   padding-top: 10px;
   margin-bottom:20px;
   max-width: 500px;
-  border:2px brown solid;
+  border:2px #710b16 solid;
+  border-radius: 20%;
+  background: none!important;
 
 }
 .hidden{
   display: none!important;
 }
-a
+a {
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: yellow;
+}

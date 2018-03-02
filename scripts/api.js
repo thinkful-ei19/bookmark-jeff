@@ -1,38 +1,39 @@
 'use strict';
 const api = (function () {
-const = BASE_URL: 'https://thinkful-list-api.herokuapp.com/Jeff';
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/Jeff';
 
-function getBookMark(callback){
-  $.getJSON(BASE_URL +'/bookmarks',callback)
-}
-function createItem(name, callback){
-  const newItem = JSON.stringify({name});
+  function getBookMarks(callback) {
+    $.getJSON(BASE_URL + '/bookmarks', callback)
+  }
 
-  $.ajax({
-    'url': BASE_URL + '/bookmarks',
-    'method': 'POST',
-    'contentType': 'application/json',
-    'data': newItem,
-    'success': callback
-  });
+  function createBookmark(bookmark, callback) {
+    const newItem = JSON.stringify(
+      bookmark
+    );
 
-}
-function updateItem(id, updateData, callback){
-  const updateItemJSON = JSON.stringify(updateData);
-  console.log(updateItemJSON);
-  $.ajax({
-    'url': BASE_URL + '/bookmarks/' + id,
-    'method': 'PATCH',
-    'contentType': 'application/json',
-    'data': updateItemJSON,
-    'success': callback
-  });
-}
+    $.ajax({
+      'url': BASE_URL + '/bookmarks',
+      'method': 'POST',
+      'contentType': 'application/json',
+      'data': newItem,
+      'success': callback
+    });
 
-};
-return {
-  getItems: getItems,
-  createItem: createItem,
-  updateItem: updateItem
-};
+  }
+
+  function deleteMark(id,callback) {
+    $.ajax({
+      'url': BASE_URL + '/bookmarks/' + id,
+      'method': 'DELETE',
+      'success': callback
+    });
+  }
+
+
+  return {
+    getBookMarks,
+    createBookmark,
+    deleteMark
+  }
+
 }());

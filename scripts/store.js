@@ -1,10 +1,10 @@
 const STORE = {
-  bookmark:[
+  bookmarks:[
   {
     id:cuid(),
-    title:'GOOGLE',
-    url:"https://google.com"
-    description: 'help'
+    title:'google',
+    url:"https://google.com",
+    description: 'help',
     rating:null
   },
  

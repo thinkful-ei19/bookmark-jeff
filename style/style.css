@@ -1,6 +1,7 @@
 *{
   box-sizing: border-box;
   margin: 0;
+  overflow: hidden;
 }
 header{
   padding-bottom: 20px;
@@ -29,7 +30,11 @@ li{
 
 .box-1{
 padding-top: 20px;
+ margin-left: 23em;
   max-width: 500px;
   border:2px blue solid;
 
+}
+.hidden{
+  display: none!important;
 }
